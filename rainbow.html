@@ -8,6 +8,7 @@
 
 
 </div>
+<div><a href="/">back to index</a>
 
 
 <script>
@@ -17,10 +18,8 @@ rainbowContainer = d3.select("#rainbowContainer");
 displayString = "Heres is a sentence with every letter in its own span. Enjoy the rainbow. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus Page Maker including versions of Lorem Ipsum."
 
 
-rainbowContainer.style('margin', '0 auto');
-rainbowContainer.style('width', '800px');
-rainbowContainer.style('position', 'relative');
-rainbowContainer.style('top', '40%');
+rainbowContainer.style('margin', '0 auto').style('width', '800px').
+	style('position', 'relative').style('top', '40%');
 
 for (let i = 0, len = displayString.length; i < len; i++) {
   rainbowContainer.append("span").html(displayString[i]);
