@@ -1,0 +1,40 @@
+<html>
+<head><title>Learning d3js</title>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body style="background-color: blue">
+
+<p> p1 </p>
+<p> p2 </p>
+<p> p3 </p>
+<p> p4 </p>
+<p> p5 </p>
+<p> p6 </p>
+<p> p7 </p>
+<p> p8 </p>
+<p> p9 </p>
+<p> p10 </p>
+
+
+<script>
+//d3.selectAll("p").style("color", "white");
+
+var i= 0;
+var redoColor = function(){
+
+
+	d3.select("body").style("background-color", function() {
+	  return "hsl(" + i%360 + ",100%,50%)";
+	});
+	d3.selectAll("p").style("color",  function(d,j) {
+	  return "hsl(" + (i+j*10+180)%360 + ",100%,50%)";
+	});
+	i++;
+
+}
+
+setInterval(redoColor,10);
+
+</script>
+</body>
+</html>
