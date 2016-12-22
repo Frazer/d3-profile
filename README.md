@@ -1,7 +1,7 @@
 # learning-d3
 
 
-https://d3js.org/#introduction  inspired:
+https://d3js.org/#introduction  inspired me to make these demos:
 
 https://frazer.github.io/learning-d3/rainbow.html
     creating rainbow text by working with dom elements with d3
