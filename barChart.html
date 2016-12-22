@@ -1,24 +1,19 @@
-<!DOCTYPE html>
-<html >
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>D3 Bar Chart</title>
   
-  
-  
-      <link rel="stylesheet" href="css/barStyle.css">
+  <script src="https://d3js.org/d3.v3.min.js"></script>  
+  <link rel="stylesheet" href="css/barStyle.css" ></link>
 
-  
 </head>
 
 <body>
 
 <div><a href="index.html">back to index</a></div>
-  forked from <a href="http://codepen.io/mbostock/pen/Jaemg">http://codepen.io/mbostock/pen/Jaemg</a><br/> I added resizing and variable heights<br/>
-  See my codepen at <a href="http://codepen.io/frazerk/pen/xReXaY">http://codepen.io/frazerk/pen/xReXaY</a><br/><br/>
+<div>  forked from <a href="http://codepen.io/mbostock/pen/Jaemg">http://codepen.io/mbostock/pen/Jaemg</a><br/> I added resizing and variable heights<br/>
+  See my codepen at <a href="http://codepen.io/frazerk/pen/xReXaY">http://codepen.io/frazerk/pen/xReXaY</a><br/><br/></div>
 
   <div class="chart"></div>
-<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
   
     <script>
 
@@ -26,8 +21,7 @@ var data = [4, 100,8, 3, 15, 76, 23,11, 142];
 
 function draw() {
 
-let x = d3; 
- x= x.scale.linear()
+  let x = d3.scale.linear()
     .domain([0, d3.max(data)])
     .range([0, window.innerWidth*0.95]);
 
