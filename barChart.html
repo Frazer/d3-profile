@@ -25,7 +25,8 @@ var data = [4, 100,8, 3, 15, 76, 23,11, 142];
 
 function draw() {
 
-let x = d3.scale.linear()
+let x = d3; 
+ x= x.scale.linear()
     .domain([0, d3.max(data)])
     .range([0, window.innerWidth*0.95]);
 
