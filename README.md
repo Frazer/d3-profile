@@ -9,15 +9,19 @@ https://frazer.github.io/learning-d3/rainbow.html
 https://frazer.github.io/learning-d3/intro.html
     first attempt at accessing dom elements with d3
 
-https://d3js.org/#introduction  inspired me to make them.
+<p style="text-align: right">inspired while reading https://d3js.org/#introduction .</p>
 
 
 ------
 
 
 https://frazer.github.io/learning-d3/barChart.html
-    a bar chart with variable widths and heights and resizing - (inspired while reading https://bost.ocks.org/mike/bar/ )
+    a bar chart with variable widths and heights and resizing 
+    
+    <p style="text-align: right">inspired while reading https://bost.ocks.org/mike/bar/ )</p>
 
 
-or you can see the demo index here:
+------
+
+you can see the demo index here:
    https://frazer.github.io/learning-d3/
