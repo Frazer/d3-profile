@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>D3 Circles</title>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>  
+  <meta charset="utf-8">
+
+</head>
+<body>
+  <div><a href="index.html">back to index</a></div>
+<br/>
+  <div>
+    while reading https://bost.ocks.org/mike/join/<br/>
+    learned more about joins here: http://d3indepth.com/enterexit/<br/>
+    added mouseEvents via:  https://bl.ocks.org/mbostock/4198499
+    
+    
+  </div>
+  <h3>Slider Bar - try sliding the values</h3>
+<div id="container" class="svg-container">
+  <svg class="svgchart" style="border:1px black solid;"></svg>
+</div>
+
+
+<script>
+var height=400;
+var svg = d3.selectAll(".svgchart");
+var dataPoints = [0,34,54,108,144,180,216,252,288,324,360];
+svg.attr("height", "400px").attr("width", 40+ dataPoints.length * 30 +"px");
+
+svg.selectAll("line").data(dataPoints).enter().append("line")
+    .attr("x1", function(d, i) { return i*30 +20; })
+    .attr("x2", function(d, i) { return i*30 +20; })
+    .attr("y1", height-10)
+    .attr("y2", 10)
+    .style("stroke",  function(d) {
+      return "hsl(" + (d+10) + ",100%,50%)";
+    })
+
+var circle = svg.selectAll("circle")
+  .data(dataPoints);
+
+
+circle.exit().remove();
+
+circle.enter().append("circle")
+    .merge(circle)
+    .attr("cx", function(d, i) { return i*30 +20; })
+    .attr("cy", function(d) { return height-20- d; })
+    .attr("fill",  function(d) {
+      return "hsl(" + (d+10) + ",100%,50%)";
+    })
+    .attr("r", 10);
+
+
+
+svg.selectAll("circle").on("mousedown", function() {
+  var div = d3.select(this)
+      .classed("active", true);
+
+  var w = d3.select(window)
+      .on("mousemove", mousemove)
+      .on("mouseup", mouseup);
+
+  d3.event.preventDefault(); // disable text dragging
+
+  function mousemove() {
+    div  //.attr("cx", d3.mouse(div.node())[0])
+    .attr("cy", d3.mouse(div.node())[1])
+    .attr("fill",  "hsl(" + d3.mouse(div.node())[1] + ",100%,50%)");
+  }
+
+  function mouseup() {
+    div.classed("active", false);
+    w.on("mousemove", null).on("mouseup", null);
+  }
+});
+
+</script>
+
+</body></html>
