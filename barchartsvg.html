@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>D3 Bar Chart</title>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>  
+  <link rel="stylesheet" href="css/barStyle.css" ></link>
+  <meta charset="utf-8">
+
+</head>
+<body>
+  <div><a href="index.html">back to index</a></div>
+<br/>
+  <div>
+    ported https://bost.ocks.org/mike/bar/3/ to d3 version 4<br/>
+    added resizing inspired by https://chartio.com/resources/tutorials/how-to-resize-an-svg-when-the-window-is-resized-in-d3-js/<br/>
+    turned axis labels inspired by d3noobs https://bl.ocks.org/d3noob/3c040800ff6457717cca586ae9547dbf<br/>
+    data from https://www.gapminder.org/data/ from http://www.forbes.com/sites/bernardmarr/2016/02/12/big-data-35-brilliant-and-free-data-sources-for-2016/#57c695bb6796<br/>
+
+    
+  </div>
+  <h3>Number of causes of child deaths in 2008</h3>
+<div id="container" class="svg-container">
+<svg class="svgchart"></svg>
+</div>
+
+
+<script>
+
+var margin = {top: 20, right: 20, bottom: 90, left: 40},
+    width = 1500 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+
+var chart = d3.select(".svgchart")
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 1500 600")
+  .classed("svg-content", true);;
+
+var x = d3.scaleBand()
+    .rangeRound([0, width])
+    .padding(0.1);
+
+
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+
+
+
+chart = chart.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+d3.tsv("childDeaths.tsv", type, function(error, data) {
+  x.domain(data.map(function(d) { return d.name; }));
+  y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+  console.log(data);
+  chart.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x)).selectAll("text") 
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-65)");  //.scale(x);
+
+  chart.append("g")
+      .attr("class", "y axis")
+      .call(d3.axisLeft(y)) //.ticks(10, "%")) //.scale(y)
+  .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", "0.71em")
+    .attr("text-anchor", "end")
+    .text("Frequency");
+  
+  chart.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.name); })
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); })
+      .attr("width", x.bandwidth());
+
+});
+
+function type(d) {
+  d.value = +d.value; // coerce to number
+  return d;
+}
+</script>
+
+</body></html>
