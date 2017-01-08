@@ -4,6 +4,8 @@
   <title>D3 svg Circles and sliders</title>
   
   <script src="https://d3js.org/d3.v4.min.js"></script>  
+  <link rel="stylesheet" href="css/svgContainer.css" ></link>
+ 
   <meta charset="utf-8">
 
 </head>
@@ -22,7 +24,7 @@
   
     
   </div>
-<div id="container" class="svg-container">
+<div id="container" class="svg-container" style="width:50%;  padding-bottom:50%;">
   <svg class="svgchart" style="border:1px black solid;"></svg>
 </div>
 
@@ -38,11 +40,17 @@ var columnWidth = (circleRadius*2+6);
 var topHeight = circleRadius;
 var columnHeight = (baseHeight- topHeight - circleRadius);
 
-var svg = d3.selectAll(".svgchart");
 
 var dataPoints = [0,200,34,54,108,300,2,144,180,216,252,288,324,360];
 
-svg.attr("height", height+"px").attr("width", border*2 + dataPoints.length * columnWidth +"px");
+
+var svg = d3.select(".svgchart")
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 "+(border*2 + dataPoints.length * columnWidth)+" "+height)
+  .classed("svg-content", true);;
+
+// var svg = d3.select(".svgchart")
+//   .attr("height", height+"px").attr("width", border*2 + dataPoints.length * columnWidth +"px");
 
 svg.selectAll("line").data(dataPoints).enter().append("line")
     .attr("x1", function(d, i) { return i*columnWidth +circleRadius +border; })
